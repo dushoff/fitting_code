@@ -6,7 +6,6 @@ target pngtarget pdftarget vtarget acrtarget: notarget
 
 ##################################################################
 
-
 # make files
 
 Sources = Makefile .gitignore README.md stuff.mk LICENSE.md
@@ -16,6 +15,14 @@ include stuff.mk
 ##################################################################
 
 ## Content
+
+Sources += $(wildcard *.R *.csv)
+
+mexican_ci.Rout: mexican_fit.Rout ci.R
+mexican_fit.Rout: mexican.Rout routines.Rout fit.R
+mexican_plots.Rout: mexican_fit.Rout plotfuns.Rout plots.R
+mexican.Rout: mexican.csv read.R
+mexican_summary.Rout: mexican_fit.Rout summary.R
 
 ######################################################################
 
@@ -27,5 +34,5 @@ include stuff.mk
 -include $(ms)/git.mk
 -include $(ms)/visual.mk
 
-# -include $(ms)/wrapR.mk
+-include $(ms)/wrapR.mk
 # -include $(ms)/oldlatex.mk
