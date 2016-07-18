@@ -2,7 +2,7 @@
 ### Hooks for the editor to set the default target
 current: target
 
-target pngtarget pdftarget vtarget acrtarget: notarget
+target pngtarget pdftarget vtarget acrtarget: WW 
 
 ##################################################################
 
@@ -19,10 +19,15 @@ include stuff.mk
 Sources += $(wildcard *.R *.csv)
 
 mexican_ci.Rout: mexican_fit.Rout ci.R
+	$(run-R)
 mexican_fit.Rout: mexican.Rout routines.Rout fit.R
+	$(run-R)
 mexican_plots.Rout: mexican_fit.Rout plotfuns.Rout plots.R
+	$(run-R)
 mexican.Rout: mexican.csv read.R
+	$(run-R)
 mexican_summary.Rout: mexican_fit.Rout summary.R
+	$(run-R)
 
 ######################################################################
 
