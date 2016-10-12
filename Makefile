@@ -2,7 +2,7 @@
 ### Hooks for the editor to set the default target
 current: target
 
-target pngtarget pdftarget vtarget acrtarget: WW 
+target pngtarget pdftarget vtarget acrtarget: mexican.Rout 
 
 ##################################################################
 
@@ -16,17 +16,24 @@ include stuff.mk
 
 ## Content
 
+## These examples can't be older than H1N1pdm, but they're the oldest I have here
+
 Sources += $(wildcard *.R *.csv)
 
-mexican_ci.Rout: mexican_fit.Rout ci.R
+mexican.Rout: mexican.csv read.R
 	$(run-R)
 mexican_fit.Rout: mexican.Rout routines.Rout fit.R
 	$(run-R)
 mexican_plots.Rout: mexican_fit.Rout plotfuns.Rout plots.R
 	$(run-R)
-mexican.Rout: mexican.csv read.R
+mexican_ci.Rout: mexican_fit.Rout ci.R
 	$(run-R)
-mexican_summary.Rout: mexican_fit.Rout summary.R
+
+######################################################################
+
+## Sub-exponential fits (modularize more than above)
+
+mexican_gen.Rout: mexican.Rout gen.R
 	$(run-R)
 
 ######################################################################
