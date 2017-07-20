@@ -1,8 +1,7 @@
 # fitting_code
 ### Hooks for the editor to set the default target
 current: target
-
-target pngtarget pdftarget vtarget acrtarget: mexican_plots.Rout 
+-include target.mk
 
 ##################################################################
 
