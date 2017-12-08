@@ -39,9 +39,6 @@ mexican_gen.Rout: mexican.Rout gen.R
 
 ### Makestuff
 
-## Change this name to download a new version of the makestuff directory
-# Makefile: start.makestuff
-
 -include $(ms)/git.mk
 -include $(ms)/visual.mk
 
