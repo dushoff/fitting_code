@@ -10,6 +10,7 @@ logitfun <- function(K, x0, lam){
 }
 
 # Likelihoods
+## linfun baked in
 
 lsfun <- function(c0=1, lambda=1){
 	log_mean <- linfun(c0, lambda)
