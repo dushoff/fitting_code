@@ -13,6 +13,8 @@ include sub.mk
 
 ##################################################################
 
+## Tested quickly with RSA Covid data; no success 2020 Mar 26 (Thu)
+
 ## Content
 
 ## These examples can't be older than H1N1pdm, but they're the oldest I have here
