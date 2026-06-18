@@ -1,19 +1,17 @@
+## Abandoned 2020, looking now because of MMED
+## got rid of submodule makestuff; still using wrapR
 # fitting_code
-### Hooks for the editor to set the default target
+
 current: target
 -include target.mk
+Ignore = target.mk
 
-##################################################################
+vim_session:
+	bash -ic "vmt"
 
-# make files
+## -include makestuff/perl.def
 
-Sources = Makefile .ignore README.md sub.mk LICENSE.md
-include sub.mk
-# include $(ms)/perl.def
-
-##################################################################
-
-## Tested quickly with RSA Covid data; no success 2020 Mar 26 (Thu)
+######################################################################
 
 ## Content
 
@@ -39,10 +37,34 @@ mexican_gen.Rout: mexican.Rout gen.R
 
 ######################################################################
 
+makestuff.subclean:
+%.subclean:
+	git submodule deinit -f $*
+	git rm -f $*
+	rm -rf .git/modules/$*
+	git commit -m "Remove $* submodule"
+
+######################################################################
+
 ### Makestuff
 
--include $(ms)/git.mk
--include $(ms)/visual.mk
+Sources += Makefile
 
--include $(ms)/wrapR.mk
-# -include $(ms)/oldlatex.mk
+Ignore += makestuff
+msrepo = https://github.com/dushoff
+
+## ln -s ../makestuff . ## Do this first if you want a linked makestuff
+Makefile: makestuff/00.stamp
+makestuff/%.stamp: | makestuff
+	- $(RM) makestuff/*.stamp
+	cd makestuff && $(MAKE) pull
+	touch $@
+makestuff:
+	git clone --depth 1 $(msrepo)/makestuff
+
+-include makestuff/os.mk
+
+-include makestuff/wrapR.mk
+
+-include makestuff/git.mk
+-include makestuff/visual.mk
